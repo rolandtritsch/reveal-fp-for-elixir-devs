@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <meta name="description" content="Functional Programming for Elixir developers"/>
+    <meta name="author" content="roland@tritsch.org"/>
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link rel="stylesheet" href="./reveal.js/css/reveal.css"/>
+    <!-- themes black/white/league/sky/beige/simple/serif/blood/night/moon/solarized -->
+    <link rel="stylesheet" href="./reveal.js/css/theme/simple.css" id="theme"/>
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="./reveal.js/lib/css/zenburn.css"/>
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? './reveal.js/css/print/pdf.css' : './reveal.js/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <title>Functional Programming for Elixir Developers</title>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+	        <section>
+	          <h2>Functional Programming<br>for Elixir developers</h2>
+	          <h3>Having fun with Monads and Haskell</h3>
+	          <p>
+	            <small>Created by <a href="mailto:roland@tritsch.org">roland@tritsch.org</a> / <a href="http://twitter.com/innolocity">@innolocity</a></small>
+	          </p>
+	          <aside class="notes">
+	          </aside>
+	        </section>
+
+	      <section>
+	        <img src="https://pbs.twimg.com/media/CgKyXAHWEAA8oYo.jpg" width="50%"/>
+          <aside class="notes">
+	        </aside>
+	      </section>
+
+	      <section>
+	        <h1>Bio</h1>
+          <aside class="notes">
+	        </aside>
+	      </section>
+
+	      <section>
+	        <h1>Functional Programming</h1>
+          <aside class="notes">
+	        </aside>
+	      </section>
+
+	      <section>
+	        <h1>Haskell</h1>
+          <aside class="notes">
+	        </aside>
+	      </section>
+
+	      <section>
+	        <h1>Monads</h1>
+          <aside class="notes">
+	        </aside>
+	      </section>
+
+	      <section>
+	        <h1>Nomads</h1>
+          <aside class="notes">
+	        </aside>
+	      </section>
+
+	      <section>
+	        <h1>Q&amp;A</h1>
+          <aside class="notes">
+	        </aside>
+	      </section>
+      </div>
+    </div>
+
+    <script src="./reveal.js/lib/js/head.min.js"></script>
+    <script src="./reveal.js/js/reveal.js"></script>
+
+    <script>
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+      // Display controls in the bottom right corner
+      controls: true,
+
+      // Display a presentation progress bar
+      progress: true,
+
+      // Display the page number of the current slide
+      slideNumber: 'c/t',
+
+      // Push each slide change to the browser history
+      history: false,
+
+      // Enable keyboard shortcuts for navigation
+      keyboard: true,
+
+      // Enable the slide overview mode
+      overview: true,
+
+      // Vertical centering of slides
+      center: true,
+
+      // Enables touch navigation on devices with touch input
+      touch: true,
+
+      // Loop the presentation
+      loop: false,
+
+      // Change the presentation direction to be RTL
+      rtl: false,
+
+      // Turns fragments on and off globally
+      fragments: true,
+
+      // Flags if the presentation is running in an embedded mode,
+      // i.e. contained within a limited portion of the screen
+      embedded: false,
+
+      // Flags if we should show a help overlay when the questionmark
+      // key is pressed
+      help: true,
+
+      // Number of milliseconds between automatically proceeding to the
+      // next slide, disabled when set to 0, this value can be overwritten
+      // by using a data-autoslide attribute on your slides
+      //autoSlide: 1000,
+
+      // Stop auto-sliding after user input
+      //autoSlideStoppable: true,
+
+      // Enable slide navigation via mouse wheel
+      mouseWheel: false,
+
+      // Hides the address bar on mobile devices
+      hideAddressBar: true,
+
+      // Opens links in an iframe preview overlay
+      previewLinks: false,
+
+      // Transition style
+      transition: 'convex', // default/none/fade/slide/convex/concave/zoom
+
+      // Transition speed
+      transitionSpeed: 'default', // default/fast/slow
+
+      // Transition style for full page slide backgrounds
+      backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
+      // Number of slides away from the current that are visible
+      viewDistance: 3,
+
+      // Parallax background image
+      parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+
+      // Parallax background size
+      parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px"
+
+      // Amount to move parallax background (horizontal and vertical) on slide change
+      // Number, e.g. 100
+      parallaxBackgroundHorizontal: '',
+      parallaxBackgroundVertical: '',
+
+      // The "normal" size of the presentation, aspect ratio will be preserved
+      // when the presentation is scaled to fit different resolutions. Can be
+      // specified using percentage units.
+      width: '100%',
+      //height: '50%',
+
+      // Factor of the display size that should remain empty around the content
+      //margin: 0.1,
+
+      // Bounds for smallest/largest possible scale to apply to content
+      //minScale: 0.2,
+      //maxScale: 2.0,
+
+      //multiplex: {
+      // Example values. To generate your own, see the socket.io server instructions.
+      //secret: 'null', // Obtained from the socket.io server. Gives this (the master) control of the presentation
+      //secret: '14358171410682014567', // Obtained from the socket.io server. Gives this (the master) control of the presentation
+      //id: '4f27fa22c1d2b0ff', // Obtained from socket.io server
+      //url: 'revealjs.jit.su:80' // Location of socket.io server
+      //},
+
+      // Optional reveal.js plugins
+      dependencies: [
+      //{ src: '//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js', async: true },
+      //{ src: './reveal.js/plugin/multiplex/master.js', async: true },
+      //{ src: './reveal.js/plugin/multiplex/client.js', async: true },
+
+      // and if you want speaker notes
+      //{ src: './reveal.js/plugin/notes-server/client.js', async: true }
+
+      { src: './reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: './reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: './reveal.js/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: './reveal.js/plugin/zoom-js/zoom.js', async: true },
+      { src: './reveal.js/plugin/notes/notes.js', async: true }
+      ]
+      });
+    </script>
+  </body>
+</html>
