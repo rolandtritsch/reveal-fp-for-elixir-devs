@@ -13,7 +13,7 @@
 
     <link rel="stylesheet" href="./reveal.js/css/reveal.css"/>
     <!-- themes black/white/league/sky/beige/simple/serif/blood/night/moon/solarized -->
-    <link rel="stylesheet" href="./reveal.js/css/theme/simple.css" id="theme"/>
+    <link rel="stylesheet" href="./reveal.js/css/theme/solarized.css" id="theme"/>
 
     <!-- Code syntax highlighting -->
     <link rel="stylesheet" href="./reveal.js/lib/css/zenburn.css"/>
@@ -33,42 +33,167 @@
   <body>
     <div class="reveal">
       <div class="slides">
-	        <section>
-	          <h2>Functional Programming<br>for Elixir developers</h2>
-	          <h3>Having fun with Monads and Haskell</h3>
-	          <p>
-	            <small>Created by <a href="mailto:roland@tritsch.org">roland@tritsch.org</a> / <a href="http://twitter.com/innolocity">@innolocity</a></small>
-	          </p>
-	          <aside class="notes">
-	          </aside>
-	        </section>
+	      <section>
+	        <h2>Functional Programming<br>for Elixir Developers</h2>
+	        <h3>Having fun with Haskell and Monads</h3>
+	        <p>
+	          <small>Created by <a href="mailto:roland@tritsch.org">roland@tritsch.org</a> / <a href="http://twitter.com/innolocity">@innolocity</a></small>
+	        </p>
+	        <aside class="notes">
+	        </aside>
+	      </section>
 
 	      <section>
-	        <img src="https://pbs.twimg.com/media/CgKyXAHWEAA8oYo.jpg" width="50%"/>
+          <figure>
+            <figcaption><cite>Edsger Dijkstra:</cite></figcaption>
+            <blockquote>
+              If debugging is the process of removing software bugs,
+              then programming must be the process of putting them in.
+            </blockquote>
+          </figure>
+          <aside class="notes">
+	        </aside>
+	      </section>
+
+	      <section>
+          <figure>
+	          <img src="https://images.unsplash.com/photo-1512087499053-023f060e2cea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" width="50%"/>
+            <figcaption><small>Source: Unsplash</small></figcaption>
+          </figure>
+          <aside class="notes">
+	        </aside>
+	      </section>
+
+	      <section>
+          <figure>
+ 	          <img src="./images/elixir-conf.png" width="50%"/>
+            <figcaption><small>Source: <a href="https://www.elixirconf.eu/ElixirConf-EU-2020">ElixirConf EU 2020</a></small></figcaption>
+          </figure>
+          <aside class="notes">
+	        </aside>
+	      </section>
+
+	      <section>
+          <blockquote cite="https://en.wikipedia.org/wiki/John_Ousterhout">
+            Complexity is anything that makes software hard to understand or to modify. - John Ousterhout
+          </blockquote>
+          <blockquote>
+            Easy vs. hard and complex vs. simple. The quadrant of pain. - ???
+          </blockquote>
           <aside class="notes">
 	        </aside>
 	      </section>
 
 	      <section>
 	        <h1>Bio</h1>
+          <ul>
+            <li>CTO @ Leprechaun Solutions</li>
+            <li>Engineer @ Community</li>
+            <li>Software Engineer, Engineering Manager, Hubby, Papa, ...</li>
+            <li>Builder and runner of functional teams and functional systems</li>
+            <li>Explorer of extreme digital nomading and of remote-first cultures</li>
+            <li><a href="http://howrolandrolls.com">A wave</a></li>
+          </ul>
           <aside class="notes">
 	        </aside>
 	      </section>
 
 	      <section>
 	        <h1>Functional Programming</h1>
+          <blockquote cite="https://en.wikipedia.org/wiki/Functional_programming">
+            ... a style of building the structure and elements of computer programs, that treats computation
+            as the evaluation of mathematical functions and avoids changing-state and mutable data. It is a
+            declarative programming paradigm, which means programming is done with expressions or declarations
+            instead of statements. -- WikiPedia
+          </blockquote>
+          <aside class="notes">
+	        </aside>
+	      </section>
+
+	      <section>
+	        <h1>Functional Programming</h1>
+          <ul>
+            <li>Declarative (like SQL). Describing what (data) you want (not how to get it (algorithms)).</li>
+            <li>Pure functions (with no side-effects). Immutable datastructures (that are lazy). </li>
+            <ul>
+              <li>pure functions + immutable data = referential transparency</li>
+            </ul>
+            <li>Higher Order Functions (functions as parameters). Lambdas. Composeability. Currying.</li>
+            <li>Category Theory. Type-Classes (Functor, Applicative, Monad). Data-Types (IO, Option, Either, Try, ...).</li>
+            <li>Haskell. Scala(z). Kotlin(Arrow). Clojure. F#. ... Erlang. Elixir.</li>
+          </ul>
+          <blockquote>
+            Less code that is easier/faster to change/test and cheaper to maintain (harder to break; more up-time; more velocity).
+          </blockquote>
           <aside class="notes">
 	        </aside>
 	      </section>
 
 	      <section>
 	        <h1>Haskell</h1>
+          <ul>
+            <li>Best language to learn Functional Programming.</li>
+            <li>Strongly-typed.</li>
+          </ul>
+          <aside class="notes">
+	        </aside>
+	      </section>
+
+	      <section>
+          <figure>
+  	        <img src="https://scalerablog.files.wordpress.com/2015/10/44b0bd758f8ee5c81362923f0d5c8e017c9ddf623925e60c29a4c015b89fbb45.jpg" width="50%"/>
+            <figcaption><small>Source: MemeGenerator.net</small></figcaption>
+          </figure>
+          <aside class="notes">
+	        </aside>
+	      </section>
+
+	      <section>
+          <figure>
+  	        <img src="https://pbs.twimg.com/media/CgKyXAHWEAA8oYo.jpg" width="40%"/>
+	          <figcaption><small>Source: MemeGenerator.net</small></figcaption>
+          </figure>
           <aside class="notes">
 	        </aside>
 	      </section>
 
 	      <section>
 	        <h1>Monads</h1>
+          <blockquote cite="https://en.wikipedia.org/wiki/Monad_(functional_programming)">
+            ... a monad is a design pattern that allows structuring programs generically while automating away
+            boilerplate code needed by the program logic. - WikiPedia
+          </blockquote>
+          <aside class="notes">
+	        </aside>
+	      </section>
+
+	      <section>
+	        <h1>Monads</h1>
+          <blockquote cite="https://en.wikipedia.org/wiki/Monad_(functional_programming)">
+            Whatever language or default programming paradigm a developer uses, following the monad pattern
+            brings many of the benefits of purely functional programming. By reifying a specific kind of
+            computation, a monad not only encapsulates the tedious details of that computational pattern,
+            but it does so in a declarative way, improving the code's clarity. - WikiPedia
+          </blockquote>
+          <aside class="notes">
+	        </aside>
+	      </section>
+
+	      <section>
+	        <h1>Monads</h1>
+          <ul>
+            <li>Wrappers/containers (with some special properties/context).</li>
+            <li>Functors (<$>). Applicatives (<*>). Monads (>>=).</li>
+            <li>Lists. Options. Futures. ...</li>
+            <li>monad. MonadEx.</li>
+          </ul>
+          <aside class="notes">
+	        </aside>
+	      </section>
+
+	      <section>
+	        <h1>Monads</h1>
+          <img src="http://adit.io/imgs/functors/monad_just.png"/>
           <aside class="notes">
 	        </aside>
 	      </section>
