@@ -1,6 +1,6 @@
 defmodule Witchcraft.Tutorial.First do
-  def run(inital, multiplicator, divisor) do
-    result = inital |> mul_by(multiplicator) |> div_by(divisor)
+  def run(initial, multiplicator, divisor) do
+    result = initial |> mul_by(multiplicator) |> div_by(divisor)
     IO.inspect(result)
   end
 

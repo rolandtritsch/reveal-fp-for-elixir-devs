@@ -9,6 +9,7 @@ defmodule Mix.Tasks.Tutorial do
 
   alias Witchcraft.Tutorial.{
     First,
+    With,
     Maybe
   }
 
@@ -18,6 +19,7 @@ defmodule Mix.Tasks.Tutorial do
 
     help - this message
     first - getting started
+    with - getting started (with with)
     maybe - getting started (with the first monad)
     """
   end
@@ -26,7 +28,15 @@ defmodule Mix.Tasks.Tutorial do
     """
     first: Missing parameter(s). Use one of ...
 
-    first <inital> <multiplicator> <divisor>
+    first <initial> <multiplicator> <divisor>
+    """
+  end
+
+  defp usage_with do
+    """
+    with: Missing parameter(s). Use one of ...
+
+    with <initial> <multiplicator> <divisor>
     """
   end
 
@@ -34,22 +44,32 @@ defmodule Mix.Tasks.Tutorial do
     """
     maybe: Missing parameter(s). Use one of ...
 
-    maybe <inital> <multiplicator> <divisor>
+    maybe <initial> <multiplicator> <divisor>
     """
   end
 
   @impl true
   def run(["help"]), do: Mix.raise(usage())
 
-  def run(["first", inital, multiplicator, divisor]) do
-    {i, ""} = Integer.parse(inital)
+  def run(["first"]), do: Mix.raise(usage_first())
+  def run(["first", initial, multiplicator, divisor]) do
+    {i, ""} = Integer.parse(initial)
     {m, ""} = Integer.parse(multiplicator)
     {d, ""} = Integer.parse(divisor)
     First.run(i, m, d)
   end
 
-  def run(["maybe", inital, multiplicator, divisor]) do
-    {i, ""} = Integer.parse(inital)
+  def run(["with"]), do: Mix.raise(usage_with())
+  def run(["with", initial, multiplicator, divisor]) do
+    {i, ""} = Integer.parse(initial)
+    {m, ""} = Integer.parse(multiplicator)
+    {d, ""} = Integer.parse(divisor)
+    With.run(i, m, d)
+  end
+
+  def run(["maybe"]), do: Mix.raise(usage_maybe())
+  def run(["maybe", initial, multiplicator, divisor]) do
+    {i, ""} = Integer.parse(initial)
     {m, ""} = Integer.parse(multiplicator)
     {d, ""} = Integer.parse(divisor)
     Maybe.run(i, m, d)

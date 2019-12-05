@@ -1,8 +1,8 @@
 defmodule Witchcraft.Tutorial.Maybe do
   alias Algae.Maybe.{Just, Nothing}
 
-  def run(inital, multiplicator, divisor) do
-    result = Just.new(inital) |> mul_by(Just.new(multiplicator)) |> div_by(Just.new(divisor))
+  def run(initial, multiplicator, divisor) do
+    result = Just.new(initial) |> mul_by(Just.new(multiplicator)) |> div_by(Just.new(divisor))
     IO.inspect(result)
   end
 
