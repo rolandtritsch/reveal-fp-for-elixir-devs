@@ -1,7 +1,7 @@
 defmodule Witchcraft.Tutorial.First do
-  def run() do
-    result = 10 |> mul_by(2) |> div_by(10)
-    IO.puts(result)
+  def run(inital, multiplicator, divisor) do
+    result = inital |> mul_by(multiplicator) |> div_by(divisor)
+    IO.inspect(result)
   end
 
   defp mul_by(thiz, thaz), do: thiz * thaz

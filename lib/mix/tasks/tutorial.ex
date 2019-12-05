@@ -8,7 +8,8 @@ defmodule Mix.Tasks.Tutorial do
   use Mix.Task
 
   alias Witchcraft.Tutorial.{
-    First
+    First,
+    Maybe
   }
 
   defp usage do
@@ -17,22 +18,42 @@ defmodule Mix.Tasks.Tutorial do
 
     help - this message
     first - getting started
+    maybe - getting started (with the first monad)
     """
   end
 
   defp usage_first do
     """
-    first: Do not expect a parameter. Use ...
+    first: Missing parameter(s). Use one of ...
 
-    first
+    first <inital> <multiplicator> <divisor>
+    """
+  end
+
+  defp usage_maybe do
+    """
+    maybe: Missing parameter(s). Use one of ...
+
+    maybe <inital> <multiplicator> <divisor>
     """
   end
 
   @impl true
   def run(["help"]), do: Mix.raise(usage())
 
-  def run(["first" | [_ | _]]), do: Mix.raise(usage_first())
-  def run(["first"]), do: First.run()
+  def run(["first", inital, multiplicator, divisor]) do
+    {i, ""} = Integer.parse(inital)
+    {m, ""} = Integer.parse(multiplicator)
+    {d, ""} = Integer.parse(divisor)
+    First.run(i, m, d)
+  end
+
+  def run(["maybe", inital, multiplicator, divisor]) do
+    {i, ""} = Integer.parse(inital)
+    {m, ""} = Integer.parse(multiplicator)
+    {d, ""} = Integer.parse(divisor)
+    Maybe.run(i, m, d)
+  end
 
   def run([]), do: run(["help"])
   def run(_), do: run(["help"])

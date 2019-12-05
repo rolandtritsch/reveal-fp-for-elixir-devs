@@ -21,7 +21,8 @@ defmodule WitchcraftTutorial.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:witchcraft, "~> 1.0"}
+      {:witchcraft, "~> 1.0"},
+      {:algae, "~> 1.2"}
     ]
   end
 end
