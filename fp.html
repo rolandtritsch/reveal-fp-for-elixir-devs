@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 
-    <meta name="description" content="Functional Programming for Elixir developers"/>
+    <meta name="description" content="Functional Refactoring for Elixir developers"/>
     <meta name="author" content="roland@tritsch.org"/>
 
     <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -27,27 +27,21 @@
       document.getElementsByTagName( 'head' )[0].appendChild( link );
     </script>
 
-    <title>Functional Programming for Elixir Developers</title>
+    <title>Functional Refactoring for Elixir Developers</title>
   </head>
 
   <body>
     <div class="reveal">
       <div class="slides">
 	      <section>
-	        <h2>Functional Programming<br>for Elixir Developers</h2>
-	        <h3>Having fun with Haskell and Monads</h3>
-	        <p>
-	          <small>Created by <a href="mailto:roland@tritsch.org">roland@tritsch.org</a> / <a href="http://twitter.com/innolocity">@innolocity</a></small>
-	        </p>
-	        <aside class="notes">
-	        </aside>
-	      </section>
-
-	      <section>
 	        <h2>Functional Refactoring<br>for Elixir Developers</h2>
 	        <h3>Having fun with Monads</h3>
 	        <p>
-	          <small>Created by <a href="mailto:roland@tritsch.org">roland@tritsch.org</a> / <a href="http://twitter.com/innolocity">@innolocity</a></small>
+	          <small>
+              Created by <a href="mailto:roland@tritsch.org">roland@tritsch.org</a> / <a href="http://twitter.com/innolocity">@innolocity</a>
+              <br>
+	            Jan 2020 - Elixir Meetup - Munich
+            </small>
 	        </p>
 	        <aside class="notes">
 	        </aside>
@@ -115,45 +109,10 @@
 	      </section>
 
 	      <section>
-          <figure>
-	          <img src="https://images.unsplash.com/photo-1512087499053-023f060e2cea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" width="50%"/>
-            <figcaption><small>Source: Unsplash</small></figcaption>
-          </figure>
-          <aside class="notes">
-	        </aside>
-	      </section>
-
-	      <section>
-          <figure>
- 	          <img src="./images/elixir-conf.png" width="50%"/>
-            <figcaption><small>Source: <a href="https://www.elixirconf.eu/ElixirConf-EU-2020">ElixirConf EU 2020</a></small></figcaption>
-          </figure>
-          <aside class="notes">
-	        </aside>
-	      </section>
-
-	      <section>
-          <figure>
-            <blockquote>
-              Complexity is anything that makes software hard to understand or to modify.
-            </blockquote>
-            <figcaption><small>Source: <a href="https://en.wikipedia.org/wiki/John_Ousterhout">John Ousterhout</a></small></figcaption>
-          </figure>
-          <figure>
-            <blockquote>
-              Easy vs. hard and complex vs. simple.
-            </blockquote>
-            <figcaption><small>Source: "Rich Hickey" & "Steve Jobs" & "Karl Mathias"</small></figcaption>
-          </figure>
-          <aside class="notes">
-	        </aside>
-	      </section>
-
-	      <section>
 	        <h1>Bio, I am a/the ...</h1>
           <ul>
             <li>CTO @ Leprechaun Solutions</li>
-            <li>Engineer @ Community</li>
+            <li>Principal Engineer @ Community</li>
             <li>Software Engineer, Engineering Manager, Hubby, Papa, ...</li>
             <li>Builder and runner of functional teams and functional systems</li>
             <li>Explorer of extreme digital nomading and of remote-first cultures</li>
@@ -164,32 +123,20 @@
 	      </section>
 
 	      <section>
-	        <h1>Talk(s)</h1>
+	        <h1>Community</h1>
           <ul>
-            <li>Understand it - Category Theory, Functional Programming</li>
-            <li>Implement it - Language, Library</li>
-            <li>Use it - ... (crickets)</li>
+            <li><strong>Fostering more meaningful conversations (again).</strong>Between ...</li>
+              <ul>
+                <li>Artists and Fans. Activists and Change Agents. Thoughtleaders and ...</li>
+                <li><a href="https://twitter.com/theellenshow/status/1190341840962113536?lang=en" target="_blank">Ellen DeGeneres</a>. Jennifer Lopez. Marshmello. Mark Cuban. ...</li>
+              </ul>
+            <li>Founded in 2018. Based in LA/USA (and 5 more timezones). Remote-First.</li>
+            <li>Shared-Nothing Micro-Services Architecture (using an event-bus for state propagation).</li>
+            <li>React frontend. Elixir backend. MySql/Vitess database(s). RabbitMQ messaging.</li>
           </ul>
-          <blockquote>
-            <b>Bad code --&gt; Good code</b> --&gt; Great code
-          </blockquote>
           <aside class="notes">
-          </aside>
-        </section>
-
-        <section>
-	        <h1>Talk(s)</h1>
-          <ul>
-            <li>Understand it - Category Theory, Functional Programming</li>
-            <li>Implement it - Language, Library</li>
-            <li>Use it - ... (crickets)</li>
-          </ul>
-          <blockquote>
-            Bad code --&gt; <b>Good code --&gt; Great code</b>
-          </blockquote>
-          <aside class="notes">
-          </aside>
-        </section>
+	        </aside>
+	      </section>
 
         <section>
 	        <h1>Functional Programming</h1>
@@ -285,7 +232,52 @@
 
         <section>
 	        <h1>Live Coding :)</h1>
-          <small>Euphemism for ... did run out of time to do more slides</small>
+          <aside class="notes">
+	        </aside>
+        </section>
+
+        <section>
+	        <h1>Pattern matching</h1>
+	        <h2>(on steroids)</h2>
+					<pre><code class="elixir" data-trim data-line-numbers="">
+defmodule Witchcraft.Tutorial.First do
+  def run(initial, multiplicator, divisor) do
+    initial |> mul_by(multiplicator) |> div_by(divisor) |> IO.inspect()
+  end
+
+  defp mul_by(thiz, thaz), do: thiz * thaz
+  defp div_by(thiz, thaz), do: thiz / thaz
+end
+          </code></pre>
+          <aside class="notes">
+	        </aside>
+        </section>
+
+        <section>
+	        <h1>Pattern matching</h1>
+	        <h2>(on steroids)</h2>
+					<pre><code class="elixir" data-trim data-line-numbers="">
+defmodule Witchcraft.Tutorial.With do
+  def run(initial, multiplicator, divisor) do
+    with result <- mul_by(initial, multiplicator),
+         {:ok, result1} <- div_by(result, divisor)
+    do
+      IO.inspect(result1)
+    else
+      {:error, :div_by_zero} -> IO.puts("Error: Div by 0")
+      {:error, _} -> IO.puts("Error: Unknown")
+    end
+  end
+
+  defp mul_by(thiz, thaz), do: thiz * thaz
+  defp div_by(thiz, thaz) do
+    if thaz > 0 do
+      {:ok, thiz / thaz}
+    else
+      {:error, :div_by_zero}
+    end
+  end
+end          </code></pre>
           <aside class="notes">
 	        </aside>
         </section>
@@ -321,7 +313,6 @@
               Bartosz Milewski</li>
             <li><a href="http://adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html">Monads</a> - Adit</li>
             <li><a href="https://www.youtube.com/watch?v=psdG5iV57q0">Witchcraft</a> - Witchcrafters</li>
-            <li>???</li>
           </ul>
           <aside class="notes">
 	        </aside>
