@@ -11,11 +11,6 @@ defmodule Witchcraft.Tutorial.With do
   end
 
   defp mul_by(thiz, thaz), do: thiz * thaz
-  defp div_by(thiz, thaz) do
-    if thaz > 0 do
-      {:ok, thiz / thaz}
-    else
-      {:error, :div_by_zero}
-    end
-  end
+  defp div_by(_thiz, thaz) when thaz == 0, do: {:error, :div_by_zero}
+  defp div_by(thiz, thaz), do: {:ok, thiz / thaz}
 end
