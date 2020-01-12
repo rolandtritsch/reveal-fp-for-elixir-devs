@@ -13,7 +13,7 @@
 
     <link rel="stylesheet" href="./reveal.js/css/reveal.css"/>
     <!-- themes black/white/league/sky/beige/simple/serif/blood/night/moon/solarized -->
-    <link rel="stylesheet" href="./reveal.js/css/theme/solarized.css" id="theme"/>
+    <link rel="stylesheet" href="./reveal.js/css/theme/night.css" id="theme"/>
 
     <!-- Code syntax highlighting -->
     <link rel="stylesheet" href="./reveal.js/lib/css/zenburn.css"/>
@@ -36,11 +36,10 @@
 	      <section>
 	        <h2>Functional Refactoring<br>for Elixir Developers</h2>
 	        <h3>Having fun with Monads</h3>
+          <h4>Jan 2020 - Elixir Meetup - Munich</h4>
 	        <p>
 	          <small>
               Created by <a href="mailto:roland@tritsch.org">roland@tritsch.org</a> / <a href="http://twitter.com/innolocity">@innolocity</a>
-              <br>
-	            Jan 2020 - Elixir Meetup - Munich
             </small>
 	        </p>
 	        <aside class="notes">
@@ -109,7 +108,7 @@
 	      </section>
 
 	      <section>
-	        <h1>Bio, I am a/the ...</h1>
+	        <h2>Bio, <a href="http://www.tritsch.org/about">I am</a> a/the ...</h2>
           <ul>
             <li>CTO @ Leprechaun Solutions</li>
             <li>Principal Engineer @ Community</li>
@@ -123,7 +122,7 @@
 	      </section>
 
 	      <section>
-	        <h1>Community</h1>
+	        <h2>Community</h2>
           <ul>
             <li><strong>Fostering more meaningful conversations (again).</strong>Between ...</li>
               <ul>
@@ -139,7 +138,7 @@
 	      </section>
 
         <section>
-	        <h1>Functional Programming</h1>
+	        <h2>Functional Programming</h2>
           <figure>
             <blockquote>
               ... a style of building the structure and elements of computer programs, that treats computation
@@ -154,7 +153,7 @@
         </section>
 
         <section>
-	        <h1>Functional Programming</h1>
+	        <h2>Functional Programming</h2>
           <ul>
             <li><b>Declarative (like SQL). Describing what (data) you want (not how to get it (algorithms)).</b></li>
             <li>Pure functions (with no side-effects). Immutable datastructures (that are lazy). </li>
@@ -166,7 +165,7 @@
             <li>Haskell. Scala(z). Kotlin(Arrow). Clojure. F#. ... Erlang. Elixir.</li>
           </ul>
           <blockquote>
-            Less code that is easier/faster to change/test and cheaper to maintain (harder to break; more up-time; more velocity).
+            Less code that is easier/faster to change/test and cheaper to own/maintain (harder to break; more up-time; more velocity).
           </blockquote>
           <aside class="notes">
 	        </aside>
@@ -182,16 +181,7 @@
         </section>
 
         <section>
-          <figure>
-  	        <img src="https://pbs.twimg.com/media/CgKyXAHWEAA8oYo.jpg" width="40%"/>
-	          <figcaption><small>Source: MemeGenerator.net</small></figcaption>
-          </figure>
-          <aside class="notes">
-	        </aside>
-        </section>
-
-        <section>
-	        <h1>Monads</h1>
+	        <h2>Monads</h2>
           <figure>
             <blockquote>
               ... a monad is a design pattern that allows structuring programs generically while automating away
@@ -204,7 +194,7 @@
         </section>
 
         <section>
-	        <h1>Monads</h1>
+	        <h2>Monads</h2>
           <figure>
             <blockquote cite="https://en.wikipedia.org/wiki/Monad_(functional_programming)">
               Whatever language or default programming paradigm a developer uses, following the monad pattern
@@ -219,7 +209,7 @@
         </section>
 
         <section>
-	        <h1>Monads</h1>
+	        <h2>Monads</h2>
           <ul>
             <li>Wrappers/containers (with some special properties/context).</li>
             <li>Functors (<$>). Applicatives (<*>). Monads (>>=).</li>
@@ -231,15 +221,30 @@
         </section>
 
         <section>
-	        <h1>Live Coding :)</h1>
+	        <h2>(Live) Coding :)</h2>
+          <ul>
+            <li>Maybe - Another way to deal with <em>Nothing</em>.</li>
+            <li>Monad - On a scratch pad.</li>
+            <li>Writer/Error - Logging on steroids.</li>
+          </ul>
           <aside class="notes">
 	        </aside>
         </section>
 
         <section>
-	        <h1>Pattern matching</h1>
-	        <h2>(on steroids)</h2>
-					<pre><code class="elixir" data-trim data-line-numbers="">
+	        <h2>Maybe</h2>
+          <h3>Problem: Too many problems :)</h3>
+          <ul>
+            <li>Cheat: Include the problem in the solution domain.</li>
+            <li>Make it natural to <em>handle</em> the problem.</li>
+            <li><em>Just</em> pattern matching on steroids.</li>
+          </ul>
+          <aside class="notes">
+	        </aside>
+        </section>
+
+        <section>
+					<pre class="stretch"><code class="elixir" data-trim data-line-numbers="">
 defmodule Witchcraft.Tutorial.First do
   def run(initial, multiplicator, divisor) do
     initial |> mul_by(multiplicator) |> div_by(divisor) |> IO.inspect()
@@ -254,9 +259,7 @@ end
         </section>
 
         <section>
-	        <h1>Pattern matching</h1>
-	        <h2>(on steroids)</h2>
-					<pre><code class="elixir" data-trim data-line-numbers="">
+					<pre class="stretch"><code class="elixir" data-trim data-line-numbers="">
 defmodule Witchcraft.Tutorial.With do
   def run(initial, multiplicator, divisor) do
     with result <- mul_by(initial, multiplicator),
@@ -270,27 +273,148 @@ defmodule Witchcraft.Tutorial.With do
   end
 
   defp mul_by(thiz, thaz), do: thiz * thaz
-  defp div_by(thiz, thaz) do
-    if thaz > 0 do
-      {:ok, thiz / thaz}
-    else
-      {:error, :div_by_zero}
-    end
-  end
-end          </code></pre>
+  defp div_by(_thiz, thaz) when thaz == 0, do: {:error, :div_by_zero}
+  defp div_by(thiz, thaz), do: {:ok, thiz / thaz}
+end
+          </code></pre>
           <aside class="notes">
 	        </aside>
         </section>
 
         <section>
-	        <h1>Nomads</h1>
+					<pre class="stretch"><code class="elixir" data-trim data-line-numbers="">
+defmodule Witchcraft.Tutorial.Maybe do
+  alias Algae.Maybe
+  alias Algae.Maybe.{Just, Nothing}
+
+  def run(initial, multiplicator, divisor) do
+    Maybe.new(initial) |> mul_by(Maybe.new(multiplicator)) |> div_by(Maybe.new(divisor)) |> IO.inspect()
+  end
+
+  defp mul_by(_thiz, %Nothing{} = _thaz), do: Maybe.new()
+  defp mul_by(%Nothing{} = _thiz, _thaz), do: Maybe.new()
+  defp mul_by(%Just{just: thiz}, %Just{just: thaz}), do: Maybe.new(thiz * thaz)
+
+  defp div_by(_thiz, %Nothing{} = _thaz), do: Maybe.new()
+  defp div_by(%Nothing{} = _thiz, _thaz), do: Maybe.new()
+  defp div_by(_thiz, %Just{just: 0}), do: Maybe.new()
+  defp div_by(%Just{just: thiz}, %Just{just: thaz}), do: Maybe.new(thiz / thaz)
+end
+          </code></pre>
+          <aside class="notes">
+	        </aside>
+        </section>
+
+        <section>
+	        <h2>Monad</h2>
+          <h3>Problem: Say pattern ...</h3>
+          <ul>
+            <li>Don't lose you mind :).</li>
+            <li>Function composition (on steroids).</li>
+            <li>Bind, pipe, ... with a context (Maybe, List, Writer, ...).</li>
+          </ul>
+          <aside class="notes">
+	        </aside>
+        </section>
+
+         <section>
+          <figure>
+  	        <img src="https://pbs.twimg.com/media/CgKyXAHWEAA8oYo.jpg" width="40%"/>
+	          <figcaption><small>Source: MemeGenerator.net</small></figcaption>
+          </figure>
+          <aside class="notes">
+	        </aside>
+        </section>
+
+        <section>
+	        <h2>Monad</h2>
+          <h3>Problem: Say pattern ...</h3>
+          <ul>
+            <li>Don't lose you mind :).</li>
+            <li>Function composition (on steroids).</li>
+            <li>Bind, pipe, ... with a context (Maybe, Bag, Writer, ...).</li>
+          </ul>
+          <aside class="notes">
+	        </aside>
+        </section>
+
+        <section>
+					<pre class="stretch"><code class="elixir" data-trim data-line-numbers="">
+f = fn x -> x + 3 end
+ff = fn x -> x * 3 end
+fff = fn x -> [x * 3] end
+
+2 |> f.()
+[1, 2, 3] |> Enum.map(f)
+
+[1, 2, 3] |> Functor.map(f)
+{1, 2, 3} |> Functor.map(f)
+%{a: 1, b: 2, c: 3} |> Functor.map(f)
+
+[1, 2, 3] ~> f
+{1, 2, 3} ~> f
+%{a: 1, b: 2, c: 3} ~> f
+
+[1, 2, 3] ~>> [f, ff]
+
+[1, 2, 3] ~> f
+[1, 2, 3] ~> f ~> ff
+
+[1, 2, 3] >>> fff
+          </code></pre>
+          <aside class="notes">
+	        </aside>
+        </section>
+
+        <section>
+	        <h2>Writer/Error</h2>
+          <h3>Problem: Unstructured logging/error handling</h3>
+          <ul>
+            <li>Too many log entries.</li>
+            <li>Losing the power of the pipe.</li>
+            <li>Monads - Reader. Writer. State.</li>
+          </ul>
+          <aside class="notes">
+	        </aside>
+        </section>
+
+        <section>
+					<pre class="stretch"><code class="elixir" data-trim data-line-numbers="">
+f = fn x -> x + 3 end
+ff = fn x -> x * 3 end
+fff = fn x -> [x * 3] end
+
+2 |> f.()
+[1, 2, 3] |> Enum.map(f)
+
+[1, 2, 3] |> Functor.map(f)
+{1, 2, 3} |> Functor.map(f)
+%{a: 1, b: 2, c: 3} |> Functor.map(f)
+
+[1, 2, 3] ~> f
+{1, 2, 3} ~> f
+%{a: 1, b: 2, c: 3} ~> f
+
+[1, 2, 3] ~>> [f, ff]
+
+[1, 2, 3] ~> f
+[1, 2, 3] ~> f ~> ff
+
+[1, 2, 3] >>> fff
+          </code></pre>
+          <aside class="notes">
+	        </aside>
+        </section>
+
+        <section>
+	        <h2>Nomads</h2>
           <a href="https://www.instagram.com/theextremedigitalnomad"><img src="./images/nomad.png" width="50%"/></a>
           <aside class="notes">
 	        </aside>
         </section>
 
         <section>
-	        <h1>TL&semi;DR</h1>
+	        <h2>TL&semi;DR</h2>
           <ul>
             <li>Knowing about FP concepts <i>can</i> make you a better software engineer</li>
             <li>Applying FP concepts to your code base <i>can</i> make your code base<br>easier (and less expensive) to own/maintain</li>
@@ -301,13 +425,13 @@ end          </code></pre>
         </section>
 
         <section>
-	        <h1>Q&amp;A</h1>
+	        <h2>Q&amp;A</h2>
           <aside class="notes">
 	        </aside>
         </section>
 
         <section>
-	        <h1>Resources</h1>
+	        <h2>Resources</h2>
           <ul>
             <li><a href="https://www.youtube.com/watch?v=I8LbkfSSR58">Category Theory</a> -
               Bartosz Milewski</li>
