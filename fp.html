@@ -13,7 +13,7 @@
 
     <link rel="stylesheet" href="./reveal.js/css/reveal.css"/>
     <!-- themes black/white/league/sky/beige/simple/serif/blood/night/moon/solarized -->
-    <link rel="stylesheet" href="./reveal.js/css/theme/night.css" id="theme"/>
+    <link rel="stylesheet" href="./reveal.js/css/theme/solarized.css" id="theme"/>
 
     <!-- Code syntax highlighting -->
     <link rel="stylesheet" href="./reveal.js/lib/css/zenburn.css"/>
@@ -36,10 +36,12 @@
 	      <section>
 	        <h2>Functional Refactoring<br>for Elixir Developers</h2>
 	        <h3>Having fun with Monads</h3>
-          <h4>Jan 2020 - Elixir Meetup - Munich</h4>
+          <h4>Elixir Meetup - Munich - Jan 2020</h4>
 	        <p>
 	          <small>
               Created by <a href="mailto:roland@tritsch.org">roland@tritsch.org</a> / <a href="http://twitter.com/innolocity">@innolocity</a>
+              <br><br>
+              <a href="https://github.com/rolandtritsch/reveal-fp-for-elixir-devs">https://github.com/rolandtritsch/reveal-fp-for-elixir-devs</a>
             </small>
 	        </p>
 	        <aside class="notes">
@@ -110,11 +112,11 @@
 	      <section>
 	        <h2>Bio, <a href="http://www.tritsch.org/about">I am</a> a/the ...</h2>
           <ul>
-            <li>CTO @ Leprechaun Solutions</li>
-            <li>Principal Engineer @ Community</li>
+            <li>CTO @ Leprechaun Solutions.</li>
+            <li>Principal Engineer @ Community.</li>
             <li>Software Engineer, Engineering Manager, Hubby, Papa, ...</li>
-            <li>Builder and runner of functional teams and functional systems</li>
-            <li>Explorer of extreme digital nomading and of remote-first cultures</li>
+            <li>Builder and runner of functional teams and functional systems.</li>
+            <li>Explorer of <a href="https://www.instagram.com/theextremedigitalnomad">extreme digital nomading</a> and of remote-first cultures.</li>
             <li>... <a href="http://howrolandrolls.com">Wave</a> ?!?!</li>
           </ul>
           <aside class="notes">
@@ -332,7 +334,7 @@ end
           <ul>
             <li>Don't lose you mind :).</li>
             <li>Function composition (on steroids).</li>
-            <li>Bind, pipe, ... with a context (Maybe, Bag, Writer, ...).</li>
+            <li>Bind, pipe, ... with a context (Maybe, List, Writer, ...).</li>
           </ul>
           <aside class="notes">
 	        </aside>
@@ -417,7 +419,7 @@ end
 
         <section>
 					<pre class="stretch"><code class="elixir" data-trim data-line-numbers="">
- defmodule Witchcraft.Tutorial.Writer do
+defmodule Witchcraft.Tutorial.Writer do
   use Witchcraft
   alias Algae.Writer
 
