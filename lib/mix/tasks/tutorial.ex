@@ -60,7 +60,7 @@ defmodule Mix.Tasks.Tutorial do
     """
     second: Missing parameter(s). Use one of ...
 
-    second <pass>
+    second <initial>
     """
   end
 
@@ -68,7 +68,7 @@ defmodule Mix.Tasks.Tutorial do
     """
     stacktrace: Missing parameter(s). Use one of ...
 
-    stacktrace <pass>
+    stacktrace <initial>
     """
   end
 
@@ -108,13 +108,15 @@ defmodule Mix.Tasks.Tutorial do
   end
 
   def run(["second"]), do: Mix.raise(usage_second())
-  def run(["second", pass]) do
-    Second.run(pass == "true")
+  def run(["second", initial]) do
+    {n, ""} = Integer.parse(initial)
+    Second.run(n)
   end
 
   def run(["stacktrace"]), do: Mix.raise(usage_stacktrace())
-  def run(["stacktrace", pass]) do
-    Stacktrace.run(pass == "true")
+  def run(["stacktrace", initial]) do
+    {n, ""} = Integer.parse(initial)
+    Stacktrace.run(n)
   end
 
   def run(["writer"]), do: Mix.raise(usage_writer())

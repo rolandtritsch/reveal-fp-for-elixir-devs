@@ -1,39 +1,9 @@
 defmodule Witchcraft.Tutorial.Second do
-  defmodule Level3 do
-    def run(true), do: :ok
-    def run(false), do: {:error, "Something terrible happened"}
-  end
+  def double(n), do: n * 2
 
-  defmodule Level2 do
-    def run(pass) do
-      case Level3.run(pass) do
-        :ok -> :ok
-        {:error, reason} ->
-          IO.puts("#{__MODULE__} - Error: #{reason}")
-          {:error, "Level2 failed"}
-      end
-    end
-  end
+  def run(n) do
+    d = &double/1
 
-  defmodule Level1 do
-    def run(pass) do
-      case Level2.run(pass) do
-        :ok -> :ok
-        {:error, reason} ->
-          IO.puts("#{__MODULE__} - Error: #{reason}")
-          {:error, "Level1 failed"}
-      end
-    end
-  end
-
-  def run(pass) do
-    case Level1.run(pass) do
-      :ok ->
-        IO.puts("Done/Worked")
-        :ok
-      {:error, reason} ->
-        IO.puts("#{__MODULE__} - Error: #{reason}")
-        {:error, "Tutorial failed"}
-    end
+    n |> d.() |> d.() |> IO.inspect()
   end
 end

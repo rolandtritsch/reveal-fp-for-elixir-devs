@@ -2,23 +2,29 @@ defmodule Witchcraft.Tutorial.Writer do
   use Witchcraft
   alias Algae.Writer
 
-  defmodule Step2 do
-    def triple(n), do: n * 3
+  def double(n) do
+    monad Writer.new(0, "") do
+      Writer.tell "Double #{n} - "
+      return n * 2
+    end
   end
 
-  defmodule Step1 do
-    def double(n), do: n * 2
-  end
-
-  def execute(n, f) do
-    monad Writer.new(n, "log") do
-      Writer.tell "step#{n}"
-      return f.(n)
+  def triple(n) do
+    monad Writer.new(0, "") do
+      Writer.tell "Triple #{n} - "
+      return n * 3
     end
   end
 
   def run(n) do
-    #n |> Step1.double() |> Step2.triple() |> IO.inspect()
-    (execute(n, fn x -> x end) >>> &execute(&1, fn x -> x * 10 end)) >>> &execute(&1, fn x -> x * 10 end) |> IO.inspect()
+    d = &double/1
+    t = &triple/1
+
+    # n |> d.() |> IO.inspect()
+    # n |> d.() |> d.() |> IO.inspect()
+    # n |> d.() >>> d >>> d |> IO.inspect()
+    # n |> d.() >>> d >>> d |> Writer.run() |> IO.inspect()
+    n |> d.() >>> d >>> d >>> t |> Writer.run() |> IO.inspect()
+
   end
 end
