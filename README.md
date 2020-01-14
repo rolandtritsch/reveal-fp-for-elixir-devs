@@ -1,4 +1,4 @@
-# Functional Refactoring for Elixir developers
+# Functional Refactoring for Elixir Developers
 
 To make this work you need to ...
 
