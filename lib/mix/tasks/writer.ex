@@ -25,6 +25,5 @@ defmodule Witchcraft.Tutorial.Writer do
     # n |> d.() >>> d >>> d |> IO.inspect()
     # n |> d.() >>> d >>> d |> Writer.run() |> IO.inspect()
     n |> d.() >>> d >>> d >>> t |> Writer.run() |> IO.inspect()
-
   end
 end
