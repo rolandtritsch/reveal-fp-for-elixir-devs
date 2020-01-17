@@ -25,20 +25,15 @@ defmodule Witchcraft.Scratch do
     2 |> Functions.f()
     [1, 2, 3] |> Enum.map(f)
     [1, 2, 3] |> Enum.map(&Functions.f/1)
-    # {1, 2, 3} |> Enum.map(f)
 
     [1, 2, 3] |> Functor.map(f)
-    {1, 2, 3} |> Functor.map(f)
     %{a: 1, b: 2, c: 3} |> Functor.map(f)
 
     [1, 2, 3] ~> f
     [1, 2, 3] ~> &Functions.f/1
-    {1, 2, 3} ~> f
     %{a: 1, b: 2, c: 3} ~> f
 
     [1, 2, 3] ~>> [f, ff]
-    # {1, 2, 3} ~>> [f, ff]
-    # %{a: 1, b: 2, c: 3} ~>> [f, ff]
 
     Maybe.new(1) ~>> Maybe.new(f)
     Maybe.new() ~>> Maybe.new(f)
