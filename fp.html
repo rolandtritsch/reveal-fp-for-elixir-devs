@@ -350,11 +350,9 @@ fff = fn x -> [x * 3] end
 [1, 2, 3] |> Enum.map(f)
 
 [1, 2, 3] |> Functor.map(f)
-{1, 2, 3} |> Functor.map(f)
 %{a: 1, b: 2, c: 3} |> Functor.map(f)
 
 [1, 2, 3] ~> f
-{1, 2, 3} ~> f
 %{a: 1, b: 2, c: 3} ~> f
 
 [1, 2, 3] ~>> [f, ff]
