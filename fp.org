@@ -7,100 +7,112 @@
 * Functional Refactoring for Elixir Developers
 
 Roland Tritsch
+
 roland@tritsch.org
 
 www.tritsch.org
+
 www.tedn.life
 
 @innolocity
+
 @TheExtremeDigitalNomad
 
 * Disclaimer
 
 [[file:./images/disclaimer.png]]
+
 /Image credits: [[http://www.tritsch.org/2019/04/06/small-things.html][Roland - FP fan boy]]/
 
 * Quote
 
 =If debugging is the process of removing software bugs, then programming must be the process of putting them in.=
+
 /Source: Edsger Dijkstra/
 
 * Quote
 
 =Reading these books probably won't change your code overnight. Some people call it **general abstract nonsense** for a reason. That said, it does provide a nice framework for thinking about these abstract ideas, and is a recommended pursuit for all that are curious.=
+
 /Source: [[https://github.com/witchcrafters/witchcraft#prior-art-and-further-reading"][Witchcraft - Brooklyn Zelenka]]/
 
 * Bio, [[http://www.tritsch.org/about][I am]] a/the ...
 
-** CTO @ Leprechaun Solutions
-** Principal Engineer @ Community
-** Software Engineer, Engineering Manager, Hubby, Papa, ...
-** Builder and runner of functional teams and functional systems
-** Explorer of [[https://www.instagram.com/theextremedigitalnomad][extreme digital nomading]] and of remote-first cultures
-** ... a [[http://howrolandrolls.com][Wave]] *?!?!*
+- CTO @ Leprechaun Solutions
+- Principal Engineer @ Community
+- Software Engineer, Engineering Manager, Hubby, Papa, ...
+- Builder and runner of functional teams and functional systems
+- Explorer of [[https://www.instagram.com/theextremedigitalnomad][extreme digital nomading]] and of remote-first cultures
+- ... a [[http://howrolandrolls.com][Wave]] *?!?!*
 
 * Community
 
-** *Fostering more meaningful conversations (again).* Between ...
-*** Artists and Fans. Activists and Change Agents. Thoughtleaders and ...
-*** [[https://twitter.com/theellenshow/status/1190341840962113536][Ellen DeGeneres]]. Jennifer Lopez. Marshmello. Mark Cuban. ...
-** Founded in 2018. Based in LA/USA (and 5 more timezones). Remote-Also.
-** Shared-Nothing Micro-Services Architecture (using an event-bus for state propagation)
-** React frontend. Elixir backend. MySql/Vitess database(s). RabbitMQ messaging
+- *Fostering more meaningful conversations (again).* Between ...
+  - Artists and Fans. Activists and Change Agents. Thoughtleaders and ...
+  - [[https://twitter.com/theellenshow/status/1190341840962113536][Ellen DeGeneres]]. Jennifer Lopez. Marshmello. Mark Cuban. ...
+- Founded in 2018. Based in LA/USA (and 5 more timezones). Remote-Also.
+- Shared-Nothing Micro-Services Architecture (using an event-bus for state propagation)
+- React frontend. Elixir backend. MySql/Vitess database(s). RabbitMQ messaging
 
 * Functional Programming
 
 =... a style of building the structure and elements of computer programs, that treats computation as the evaluation of mathematical functions and avoids changing-state and mutable data. It is a declarative programming paradigm, which means programming is done with expressions or declarations instead of statements.=
+
 /Source: [[https://en.wikipedia.org/wiki/Functional_programming][Wikipedia]]/
 
-* Functional Programming</h2>
+* Functional Programming
 
-** *Declarative (like SQL). Describing what (data) you want (not how to get it (algorithms))*
-** Pure functions (with no side-effects). Immutable datastructures (that are lazy)
-*** pure functions + immutable data = referential transparency
-** Higher Order Functions (functions as parameters). Lambdas. Composeability. Currying
-** Category Theory. Type-Classes (Functor, Applicative, Monad). Data-Types (IO, Option, Either, Try, ...)
-** Haskell. Scala(z). Kotlin(Arrow). Clojure. F#. ... Erlang. Elixir
+- *Declarative (like SQL). Describing what (data) you want (not how to get it (algorithms))*
+- Pure functions (with no side-effects). Immutable datastructures (that are lazy)
+  - pure functions + immutable data = referential transparency
+- Higher Order Functions (functions as parameters). Lambdas. Composeability. Currying
+- Category Theory. Type-Classes (Functor, Applicative, Monad). Data-Types (IO, Option, Either, Try, ...)
+- Haskell. Scala(z). Kotlin(Arrow). Clojure. F#. ... Erlang. Elixir
 
 =Less code that is easier/faster to change/test and cheaper to own/maintain (harder to break; more up-time; more velocity).=
 
 * Quote
 
 [[https://scalerablog.files.wordpress.com/2015/10/44b0bd758f8ee5c81362923f0d5c8e017c9ddf623925e60c29a4c015b89fbb45.jpg]]
+
 /Source: MemeGenerator.net/
 
 * Monads
 
 =... a monad is a design pattern that allows structuring programs generically while automating away boilerplate code needed by the program logic.=
+
 /Source: [[https://en.wikipedia.org/wiki/Monad_(functional_programming)"][Wikipedia]]/
 
 * Monads
 
 =Whatever language or default programming paradigm a developer uses, following the monad pattern brings many of the benefits of purely functional programming. By reifying a specific kind of computation, a monad not only encapsulates the tedious details of that computational pattern, but it does so in a declarative way, improving the code's clarity.=
+
 /Source: [[https://en.wikipedia.org/wiki/Monad_(functional_programming)][Wikipedia]]/
 
 * Monads
 
-** Wrappers/containers (with some special properties/context)
-** Functors (<$>). Applicatives (<*>). Monads (>>=)
-** Lists. Options. Futures. ...
-** Monad. MonadEx. Towel. Witchcraft. ...
+- Wrappers/containers (with some special properties/context)
+- Functors (<$>). Applicatives (<*>). Monads (>>=)
+- Lists. Options. Futures. ...
+- Monad. MonadEx. Towel. Witchcraft. ...
 
 * (Live) Coding :) ...
 
-** Maybe - Another way to deal with *Nothing*
-** Monad - On a scratch pad
-** Writer/Error - Logging on steroids
+- Maybe - Another way to deal with *Nothing*
+- Monad - On a scratch pad
+- Writer/Error - Logging on steroids
 
 * Maybe
 
-** Problem: Too many problems :) ...
-*** Cheat: Include the problem in the solution domain
-*** Make it natural to <em>handle</em> the problem
-*** *Just* pattern matching on steroids
+- Problem: Too many problems :) ...
+  - Cheat: Include the problem in the solution domain
+  - Make it natural to *handle* the problem
+  - *Just* pattern matching on steroids
 
 * Code
-~
+
+#+BEGIN_SRC elixir
+
   defmodule Witchcraft.Tutorial.First do
      def run(initial, multiplicator, divisor) do
        initial |> mul_by(multiplicator) |> div_by(divisor) |> IO.inspect()
@@ -109,10 +121,13 @@ www.tedn.life
      defp mul_by(thiz, thaz), do: thiz * thaz
      defp div_by(thiz, thaz), do: thiz / thaz
    end
-~
+
+#+END_SRC
 
 * Code
-~
+
+#+BEGIN_SRC elixir
+
    defmodule Witchcraft.Tutorial.With do
      def run(initial, multiplicator, divisor) do
        with result <- mul_by(initial, multiplicator),
@@ -129,9 +144,13 @@ www.tedn.life
      defp div_by(_thiz, thaz) when thaz == 0, do: {:error, :div_by_zero}
      defp div_by(thiz, thaz), do: {:ok, thiz / thaz}
    end
-~
+
+#+END_SRC
+
 * Code
-~
+
+#+BEGIN_SRC elixir
+
   defmodule Witchcraft.Tutorial.Maybe do
      alias Algae.Maybe
      alias Algae.Maybe.{Just, Nothing}
@@ -149,21 +168,26 @@ www.tedn.life
      defp div_by(_thiz, %Just{just: 0}), do: Maybe.new()
      defp div_by(%Just{just: thiz}, %Just{just: thaz}), do: Maybe.new(thiz / thaz)
    end
-~
+
+#+END_SRC
+
 * Monad
 
-** Problem: Say pattern ...
-*** Don't lose you mind :) ...
-*** Function composition (on steroids)
-*** Bind, pipe, ... with a context (Maybe, List, Writer, ...)
+- Problem: Say pattern ...
+  - Don't lose you mind :) ...
+  - Function composition (on steroids)
+  - Bind, pipe, ... with a context (Maybe, List, Writer, ...)
 
 * Quote
 
 [[https://pbs.twimg.com/media/CgKyXAHWEAA8oYo.jpg]]
+
 /Source: MemeGenerator.net/
 
 * Code
-~
+
+#+BEGIN_SRC elixir
+
      f = fn x -> x + 3 end
      ff = fn x -> x * 3 end
      fff = fn x -> [x * 3] end
@@ -183,16 +207,20 @@ www.tedn.life
      [1, 2, 3] ~> f ~> ff
 
      [1, 2, 3] >>> fff
-~
+
+#+END_SRC
+
 * Writer/Error
 
-** Problem: Unstructured logging/error handling
-*** Too many log entries
-*** Losing the power of the pipe
-*** Monads - Reader. Writer. State
+- Problem: Unstructured logging/error handling
+  - Too many log entries
+  - Losing the power of the pipe
+  - Monads - Reader. Writer. State
 
 * Code
-~
+
+#+BEGIN_SRC elixir
+
     defmodule Witchcraft.Tutorial.Second do
       def double(n), do: n * 2
 
@@ -202,9 +230,12 @@ www.tedn.life
         n |> d.() |> d.() |> IO.inspect()
       end
     end
-~
+#+END_SRC
+
 * Code
-~
+
+#+BEGIN_SRC elixir
+
       defmodule Witchcraft.Tutorial.Stacktrace do
         def bad_double(n) do
           IO.puts("Current #{n}")
@@ -219,9 +250,11 @@ www.tedn.life
           {n, ""} |> d.() |> d.() |> IO.inspect()
         end
       end
-~
+#+END_SRC
+
 * Code
-~
+
+#+BEGIN_SRC elixir
       defmodule Witchcraft.Tutorial.Writer do
         use Witchcraft
         alias Algae.Writer
@@ -248,21 +281,22 @@ www.tedn.life
 
         end
       end
-~
+#+END_SRC
+
 * Nomads
 
 [[https://www.instagram.com/theextremedigitalnomad"][file:./images/nomad.png]]
 
 * TL;DR
 
-** Knowing about FP concepts /can/ make you a better software engineer
-** Applying FP concepts to your code base /can/ make your code base easier (and less expensive) to own/maintain
-** Let's go all-in on this (just kidding :))
+- Knowing about FP concepts /can/ make you a better software engineer
+- Applying FP concepts to your code base /can/ make your code base easier (and less expensive) to own/maintain
+- Let's go all-in on this (just kidding :))
 
 * Q&A
 
 * Resources
 
-** [[https://www.youtube.com/watch?v=I8LbkfSSR58][Category Theory - Bartosz Milewski]]
-** [[http://adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html][Monads - Adit]]
-** [[https://www.youtube.com/watch?v=psdG5iV57q0][Witchcraft - Witchcrafters]]
+- [[https://www.youtube.com/watch?v=I8LbkfSSR58][Category Theory - Bartosz Milewski]]
+- [[http://adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html][Monads - Adit]]
+- [[https://www.youtube.com/watch?v=psdG5iV57q0][Witchcraft - Witchcrafters]]
